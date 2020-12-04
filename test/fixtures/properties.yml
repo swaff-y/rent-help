@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyText
+  bedrooms: 1
+  description: MyText
+  bathrooms: 1
+  area: MyText
+  garage: 1
+  storage: false
+  leased: false
+  lease_start: 2020-12-04
+  lease_end: 2020-12-04
+  cover_image: MyText
+  image_1: MyText
+  image_2: MyText
+  image_3: MyText
+  image_4: MyText
+  image_5: MyText
+  image_6: MyText
+  image_7: MyText
+  image_8: MyText
+  image_9: MyText
+  image_10: MyText
+
+two:
+  address: MyText
+  bedrooms: 1
+  description: MyText
+  bathrooms: 1
+  area: MyText
+  garage: 1
+  storage: false
+  leased: false
+  lease_start: 2020-12-04
+  lease_end: 2020-12-04
+  cover_image: MyText
+  image_1: MyText
+  image_2: MyText
+  image_3: MyText
+  image_4: MyText
+  image_5: MyText
+  image_6: MyText
+  image_7: MyText
+  image_8: MyText
+  image_9: MyText
+  image_10: MyText
