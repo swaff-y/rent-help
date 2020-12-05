@@ -1,19 +1,38 @@
-<h2>Properties</h2>
+
 <% @properties.each do |property|%>
-<ul>
-  <li>Unit: <%= property.unit %></li>
-  <li>Street: <%= property.street %></li>
-  <li>City: <%= property.city %></li>
-  <li>State: <%= property.state %></li>
-  <li>Post: code<%= property.postcode %></li>
-  <li>Bedrooms: <%= property.bedrooms %></li>
-  <li>Area:<%= property.area %></li>
-  <li>Garage: <%= property.garage %></li>
-  <li>Storage: <%= property.storage %></li>
-  <li>Leased: <%= property.leased %></li>
-  <li>Lease start: <%= property.lease_start %></li>
-  <li>Lease End: <%= property.lease_end %></li>
-  <li><%= image_tag property.cover_image %></li>
-  <li>Owner: <%= property.owner.name %></li>
-</ul>
+
+<div class="prop-main">
+  <div class="prop-list-container">
+    <div class="circle-right">
+      Leased
+    </div>
+    <div class="prop-list-in-top">
+    </div>
+    <div class="prop-list-in-middle"">
+      <%= image_tag property.cover_image, class: "cover-img" %>
+    </div>
+    <div class="prop-list-in-bottom"">
+      <span class='prop-span-left'>
+        <table>
+          <tr>
+            <td><%= property.unit %> / <%= property.street %></td>
+          </tr>
+          <tr>
+            <td><%= property.city %> <%= property.state %>, <%= property.postcode %></td>
+          </tr>
+        </table>
+        Bed: <%= property.bedrooms %> |
+        Bath: <%= property.bathrooms %> |
+        Garage: <%= property.garage %>
+      </span>
+      <span class='prop-span-right'>
+        Owner: <%= property.owner.name %> <br>
+        lease period: <%= property.lease_start %> to <%= property.lease_end %>
+      </span>
+    </div>
+  </div>
+  <div class="prop-side-container">
+
+  </div>
+</div>
 <% end %>

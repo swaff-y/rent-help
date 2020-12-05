@@ -1,0 +1,6 @@
+.home-main{
+  background-image: url('back.jpg');
+  min-height: 600px;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+}

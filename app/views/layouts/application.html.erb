@@ -11,18 +11,40 @@
 
   <body>
     <header>
-      <h1>Rent Help</h1>
-      <nav>
-        <ul>
-          <li><%= link_to "Home", root_path%></li>
-          <li><%= link_to "Renters", tenants_path%></li>
-          <li><%= link_to "Owners", owners_path%></li>
-          <li><%= link_to "Properties", properties_path%></li>
-        </ul>
-      </nav>
-      <hr>
+    <div class="grid-container">
+
+      <div class="grid-child logo">
+        <%= link_to root_path do%>
+        <%= image_tag image_url('logo.png'), class: "logo"%>
+        <% end %>
+        <nav class="inline">
+          <%= link_to root_path, class: "nav-links" do %>
+          <span>Home</span>
+          <% end %>
+          <%= link_to tenants_path, class: "nav-links" do %>
+          <span>Renters</span>
+          <% end %>
+          <%= link_to owners_path, class: "nav-links" do %>
+          <span>Owners</span>
+          <% end %>
+          <%= link_to properties_path, class: "nav-links" do %>
+          <span>Properties</span>
+          <% end %>
+        </nav>
+      </div>
+      <div class="grid-child nav-bar">
+        <%= link_to properties_path, class: "nav-links" do %>
+        <span class="nav-right">Sign In</span>
+        <% end %>
+        <%= link_to properties_path, class: "nav-links" do %>
+        <span class="nav-right">Sign Up</span>
+        <% end %>
+      </div>
+    </div>
     </header>
+    <div class="main-container">
     <%= yield %>
+    </div>
     <footer>
       <hr>
       footer
