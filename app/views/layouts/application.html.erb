@@ -10,6 +10,22 @@
   </head>
 
   <body>
+    <header>
+      <h1>Rent Help</h1>
+      <nav>
+        <ul>
+          <li><%= link_to "Home", root_path%></li>
+          <li><%= link_to "Renters", tenants_path%></li>
+          <li><%= link_to "Owners", owners_path%></li>
+          <li><%= link_to "Properties", properties_path%></li>
+        </ul>
+      </nav>
+      <hr>
+    </header>
     <%= yield %>
+    <footer>
+      <hr>
+      footer
+    </footer>
   </body>
 </html>

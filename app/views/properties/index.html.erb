@@ -1,2 +1,19 @@
-<h1>Properties#index</h1>
-<p>Find me in app/views/properties/index.html.erb</p>
+<h2>Properties</h2>
+<% @properties.each do |property|%>
+<ul>
+  <li>Unit: <%= property.unit %></li>
+  <li>Street: <%= property.street %></li>
+  <li>City: <%= property.city %></li>
+  <li>State: <%= property.state %></li>
+  <li>Post: code<%= property.postcode %></li>
+  <li>Bedrooms: <%= property.bedrooms %></li>
+  <li>Area:<%= property.area %></li>
+  <li>Garage: <%= property.garage %></li>
+  <li>Storage: <%= property.storage %></li>
+  <li>Leased: <%= property.leased %></li>
+  <li>Lease start: <%= property.lease_start %></li>
+  <li>Lease End: <%= property.lease_end %></li>
+  <li><%= image_tag property.cover_image %></li>
+  <li>Owner: <%= property.owner.name %></li>
+</ul>
+<% end %>
