@@ -1,38 +1,32 @@
 class OwnersController < ApplicationController
-  def initialize
-    #@singular = owners
-    #@plural = owner
-    @csingular = Owner
-  end
-
   def new
-    @singular = @csingular.new
+    @owner = Owner.new
   end
 
   def create
-    @csingular.create singular_params
+    Owner.create owner_params
     redirect_to owners_path
   end
 
   def index
-    @plural = @csingular.all
+    @owners = Owner.all
   end
 
   def show
-    @singular = @csingular.find params[:id]
+    @owner = Owner.find params[:id]
   end
 
   def edit
-    @singular = @csingular.find params[:id]
+    @owner = Owner.find params[:id]
   end
 
   def update
-    singular = @csingular.find params[:id]
-    singular.update singular_params
-    redirect_to owner_path(singular.id)
+    owner = owner.find params[:id]
+    owner.update owner_params
+    redirect_to owner_path(owner.id)
   end
   private
-  def singular_params
-    params.require(:artist).permit()
+  def owner_params
+    params.require(:owner).permit(:display_name, :name, :email, :phone, :password_digest, :verified, :property_id)
   end
 end

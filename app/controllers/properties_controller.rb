@@ -1,38 +1,32 @@
 class PropertiesController < ApplicationController
-  def initialize
-    #@singular = properties
-    #@plural = property
-    @csingular = Property
-  end
-
   def new
-    @singular = @csingular.new
+    @property = Property.new
   end
 
   def create
-    @csingular.create singular_params
+    Property.create property_params
     redirect_to properties_path
   end
 
   def index
-    @plural = @csingular.all
+    @properties = Property.all
   end
 
   def show
-    @singular = @csingular.find params[:id]
+    @property = Property.find params[:id]
   end
 
   def edit
-    @singular = @csingular.find params[:id]
+    @property = Property.find params[:id]
   end
 
   def update
-    singular = @csingular.find params[:id]
-    singular.update singular_params
-    redirect_to property_path(singular.id)
+    property = Property.find params[:id]
+    property.update property_params
+    redirect_to property_path(property.id)
   end
   private
-  def singular_params
-    params.require(:artist).permit()
+  def property_params
+    params.require(:property).permit()
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_04_125851) do
+ActiveRecord::Schema.define(version: 2020_12_05_004421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,13 +51,12 @@ ActiveRecord::Schema.define(version: 2020_12_04_125851) do
     t.text "image_10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
   end
 
-  create_table "tenant_properties", force: :cascade do |t|
-    t.integer "tenant_id"
+  create_table "properties_tenants", force: :cascade do |t|
     t.integer "property_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "tenant_id"
   end
 
   create_table "tenants", force: :cascade do |t|

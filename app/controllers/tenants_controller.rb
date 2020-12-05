@@ -1,38 +1,32 @@
 class TenantsController < ApplicationController
-  def initialize
-    #@singular = tenants
-    #@plural = tenant
-    @csingular = Tenant
-  end
-
   def new
-    @singular = @csingular.new
+    @tenant = Tenant.new
   end
 
   def create
-    @csingular.create singular_params
+    Tenant.create tenant_params
     redirect_to tenants_path
   end
 
   def index
-    @plural = @csingular.all
+    @tenants = Tenant.all
   end
 
   def show
-    @singular = @csingular.find params[:id]
+    @tenant = Tenant.find params[:id]
   end
 
   def edit
-    @singular = @csingular.find params[:id]
+    @tenant = Tenant.find params[:id]
   end
 
   def update
-    singular = @csingular.find params[:id]
-    singular.update singular_params
-    redirect_to tenant_path(singular.id)
+    tenant = Tenant.find params[:id]
+    tenant.update tenant_params
+    redirect_to tenant_path(tenant.id)
   end
   private
-  def singular_params
-    params.require(:artist).permit()
+  def tenant_params
+    params.require(:tenant).permit(:display_name, :name, :email, :phone, :password_digest, :verified)
   end
 end
