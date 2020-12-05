@@ -4,6 +4,7 @@
 Tenant.destroy_all
 Owner.destroy_all
 Property.destroy_all
+PropertyImage.destroy_all
 
 
 tenant_array = []
@@ -39,45 +40,57 @@ puts "5 owners created"
 property_array = [];
 10.times do |i|
   create = Property.create!(
-    address: Faker::Address.full_address,
-    bedrooms: 2,
-    description: '',
-    bathrooms: 2,
-    area: 'test',
-    garage: 2,
+    unit: Faker::Address.secondary_address,
+    street: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    postcode: rand(1000..9000),
+    bedrooms: rand(5),
+    description: Faker::Lorem.paragraphs,
+    bathrooms: rand(3),
+    area: rand(100).to_s,
+    garage: rand(3),
     storage: Faker::Boolean.boolean,
     leased: Faker::Boolean.boolean,
     lease_start: Faker::Date.between(from: '2020-04-01', to: '2020-06-01'),
     lease_end: Faker::Date.between(from: '2020-10-01', to: '2020-12-01'),
     cover_image: 'http://www.fillmurray.com/300/200',
-    image_1: 'http://www.fillmurray.com/300/200',
-    image_2: 'http://www.fillmurray.com/300/200',
-    image_3: 'http://www.fillmurray.com/300/200',
-    image_4: 'http://www.fillmurray.com/300/200',
-    image_5: 'http://www.fillmurray.com/300/200',
-    image_6: 'http://www.fillmurray.com/300/200',
-    image_7: 'http://www.fillmurray.com/300/200',
-    image_8: 'http://www.fillmurray.com/300/200',
-    image_9: 'http://www.fillmurray.com/300/200',
-    image_10: 'http://www.fillmurray.com/300/200'
   )
   property_array.push create
 end
 
 puts "5 owners created"
 
+image_array = []
+100.times do |i|
+  create = PropertyImage.create!(
+    name: Faker::Lorem.word,
+    image_url: Faker::Fillmurray.image(grayscale: false, width: 400, height: 200)
+  )
+  image_array.push create
+end
+
 5.times do |i|
   owner_array[i].properties <<  property_array[i] << property_array[i + 5]
 end
 
 puts "Testing owners -< properties associations:"
-puts "The property '#{ Property.first.address }' is by #{Property.first.owner.name}"
-puts "The owner #{ Owner.last.name } has the property: #{ Owner.last.properties.pluck(:address).join(', ') }"
+puts "The property '#{ Property.first.street }' is by #{Property.first.owner.name}"
+puts "The owner #{ Owner.last.name } has the property: #{ Owner.last.properties.pluck(:street).join(', ') }"
 
 5.times do |i|
   property_array[i].tenants <<  tenant_array[i] << tenant_array[i + 5] << tenant_array[i + 10]
 end
 
 puts "Testing tenants >-< properties associations:"
-puts "The property '#{ Property.first.address }' is leased by #{Property.first.tenants.pluck(:name)}"
-puts "The tenant #{ Tenant.last.name } is leasing: #{ Tenant.last.properties.pluck(:address).join(', ') }"
+puts "The property '#{ Property.first.street }' is leased by #{Property.first.tenants.pluck(:name)}"
+puts "The tenant #{ Tenant.last.name } is leasing: #{ Tenant.last.properties.pluck(:street).join(', ') }"
+
+10.times do |i|
+  property_array[i].property_images << image_array[i] << image_array[i + 10] << image_array[i + 20] << image_array[i + 30] << image_array[i + 40] << image_array[i + 50] << image_array[i + 60] << image_array[i + 70] << image_array[i + 80] << image_array[i + 90]
+end
+
+puts "Testing property -< images associations:"
+puts "The image '#{ PropertyImage.first.name }' is by"
+puts PropertyImage.first.property.street
+puts "The property #{ Property.last.street} has the images: #{ Property.last.property_images.pluck(:name).join(', ') }"

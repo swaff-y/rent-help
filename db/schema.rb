@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_004421) do
+ActiveRecord::Schema.define(version: 2020_12_05_030838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,11 @@ ActiveRecord::Schema.define(version: 2020_12_05_004421) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.text "address"
+    t.text "unit"
+    t.text "street"
+    t.text "city"
+    t.text "state"
+    t.text "postcode"
     t.integer "bedrooms"
     t.text "description"
     t.integer "bathrooms"
@@ -39,16 +43,6 @@ ActiveRecord::Schema.define(version: 2020_12_05_004421) do
     t.date "lease_start"
     t.date "lease_end"
     t.text "cover_image"
-    t.text "image_1"
-    t.text "image_2"
-    t.text "image_3"
-    t.text "image_4"
-    t.text "image_5"
-    t.text "image_6"
-    t.text "image_7"
-    t.text "image_8"
-    t.text "image_9"
-    t.text "image_10"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
@@ -57,6 +51,14 @@ ActiveRecord::Schema.define(version: 2020_12_05_004421) do
   create_table "properties_tenants", force: :cascade do |t|
     t.integer "property_id"
     t.integer "tenant_id"
+  end
+
+  create_table "property_images", force: :cascade do |t|
+    t.text "name"
+    t.text "image_url"
+    t.integer "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tenants", force: :cascade do |t|
