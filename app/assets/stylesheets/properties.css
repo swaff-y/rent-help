@@ -1,56 +1,8 @@
-.prop-list-container{
-  position:relative;
-  width: 100%;
-  /* border: 1px red solid; */
-  display: grid;
-  grid-template-columns: 5fr 3fr;
-  grid-gap: 0px;
-  /* top: -100px; */
-  /* z-index: 2; */
-}
-.list-container{
-  /* border: 3px blue solid; */
-  display:grid;
-  grid-template-rows: 1fr 3fr 1fr;
-  height: 510px;
-}
-.side-container{
-  /* border: 3px green solid; */
-}
-.prop-list-in-top{
-  position: relative;
-  top: -100px;
-  height: 60px;
-  background-color: rgb(240,227,200);
-  opacity: 0.6;
-  box-shadow: 5px 10px 8px #888888;
-}
-.prop-list-in-middle{
-  position: relative;
-  top: -100px;
-  height: 350px;
-  box-shadow: 5px 10px 8px #888888;
-}
-.prop-list-in-bottom{
-  position: relative;
-  top: -100px;
-  display:flex;
-  grid-template-columns: 1fr 1fr;
-  height: 100px;
-  background-color: white;
-  box-shadow: 5px 10px 8px #888888;
-}
-.cover-img{
-  width:100%;
-  height: 100%;
-  opacity: 0.8;
-  z-index: 1;
-}
-.circle-right{
+.circle-right-top{
   position: relative;
   border-radius: 50%;
   background-color: lightgreen;
-  opacity: 0.9;
+  color:black;
   width: 100px;
   height: 60px;
   padding-top: 40px;
@@ -59,48 +11,25 @@
   left: 50px;
   z-index: 2;
 }
-.side-list{
-  /* border: 1px solid red; */
-  padding: 10px;
+.circle-right-bottom{
   position: relative;
-  top:40px;
-  left:60px;
-  width: 60%;
-  height: 400px;
-  box-shadow: 5px 10px 8px #888888;
+  border-radius: 50%;
+  background-color: rgb(154,6,6);
+  /* opacity: 0.8; */
+  color: white;
+  width: 100px;
+  height: 60px;
+  padding-top: 40px;
+  text-align: center;
+  top: 20px;
+  left: 50px;
+  z-index: 2;
+}
+.home-img{
+  border-radius: 2px;
+  width: 20px;
 }
 
-.prop-span-right{
-  padding: 10px;
-}
-.prop-span-left{
-  padding: 20px;
-}
 .prop-span-left-in-bottom{
-  padding-top: 15px;
-}
-.spacer{
-  /* border: 2px red solid; */
-  height: 70px;
-}
-.ten-link{
-  text-decoration: none;
-  color:rgb(23,96,160);
-  font-weight: 600;
-  border-radius: 5px;
-  margin: 5px;
-  font-size: 12pt;
-  font-weight: bolder;
-}
-.ten-link:hover{
-  text-decoration: none;
-  color:rgb(154,6,6);
-  font-weight: 600;
-  border-radius: 5px;
-  margin: 5px;
-  font-size: 12pt;
-  font-weight: bolder;
-}
-.prop-lists{
-  list-style-type: none;
+  letter-spacing: 8px;
 }

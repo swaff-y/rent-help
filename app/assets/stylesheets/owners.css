@@ -1,0 +1,14 @@
+.circle-right-owners{
+  position: relative;
+  border-radius: 50%;
+  border: 1px black solid;
+  background-image: url('http://placekitten.com/100/100');
+  width: 100px;
+  height: 60px;
+  padding-top: 40px;
+  text-align: center;
+  color: rgb(0,0,0,0);
+  top: 20px;
+  left: 50px;
+  z-index: 2;
+}

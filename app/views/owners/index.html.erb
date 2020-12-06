@@ -1,1 +1,40 @@
-<h2>Property Owners</h2>
+
+<%@owners.each do |owner| %>
+
+<div class="prop-main">
+  <div class="prop-list-container">
+    <%= link_to owner_path(owner.id), class: 'ten-link-main' do%>
+    <div class="list-container">
+      <div class="circle-right-owners">
+        owner
+      </div>
+      <div class="prop-list-in-top">
+      </div>
+      <div class="prop-list-in-middle"">
+        <%= image_tag owner.properties.first.cover_image, class: "cover-img" %>
+      </div>
+      <div class="prop-list-in-bottom"">
+        <div class='prop-span-left'>
+          <div class="prop-span-left-in-top">
+          <span class="bold">Name: </span><span><%= owner.name %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class="side-container">
+      <div class="side-list">
+        <h2>Owner Properties</h2>
+          <% owner.properties.each do |property|
+              address = property.unit + " / " + property.street
+          %>
+          <p class="prop-lists" ><%=link_to address, property_path(property.id), class: "ten-link"%></p>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="spacer">
+
+  </div>
+</div>
+<% end %>
