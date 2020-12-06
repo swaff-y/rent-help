@@ -1,5 +1,5 @@
-
-<% @properties.each do |property|%>
+<% i = 0 %>
+<%@properties.each do |property| %>
 
 <div class="prop-main">
   <div class="prop-list-container">
@@ -47,7 +47,10 @@
     </div>
     <div class="side-container">
       <div class="side-list">
-
+        <h2>Previous Tenants</h2>
+          <% property.tenants.each do |tenant|%>
+          <p class="prop-lists" ><%=link_to tenant.name, tenants_path(:id), class: "ten-link"%></p>
+          <% end %>
       </div>
     </div>
   </div>
@@ -55,4 +58,4 @@
 
   </div>
 </div>
-<% end %>
+<% i += 1  end %>
