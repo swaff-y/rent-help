@@ -3,48 +3,55 @@
 
 <div class="prop-main">
   <div class="prop-list-container">
-    <div class="circle-right">
-      Leased
-    </div>
-    <div class="prop-list-in-top">
-    </div>
-    <div class="prop-list-in-middle"">
-      <%= image_tag property.cover_image, class: "cover-img" %>
-    </div>
-    <div class="prop-list-in-bottom"">
-      <div class='prop-span-left'>
-        <div class="prop-span-left-in-top">
-          <%= property.unit %> / <%= property.street %>
-          <%= property.city %> <%= property.state %>, <%= property.postcode %>
-        </div>
+    <div class="list-container">
+      <div class="circle-right">
+        Leased
+      </div>
+      <div class="prop-list-in-top">
+      </div>
+      <div class="prop-list-in-middle"">
+        <%= image_tag property.cover_image, class: "cover-img" %>
+      </div>
+      <div class="prop-list-in-bottom"">
+        <div class='prop-span-left'>
+          <div class="prop-span-left-in-top">
+            <%= property.unit %> / <%= property.street %>
+            <%= property.city %> <%= property.state %>, <%= property.postcode %>
+          </div>
 
-        <div class="prop-span-left-in-bottom">
-          Bed: <%= property.bedrooms %> |
-          Bath: <%= property.bathrooms %> |
-          Garage: <%= property.garage %>
+          <div class="prop-span-left-in-bottom">
+            Bed: <%= property.bedrooms %> |
+            Bath: <%= property.bathrooms %> |
+            Garage: <%= property.garage %>
+          </div>
+        </div>
+        <div class='prop-span-right'>
+          <table>
+            <tr>
+              <td>Owner:</td>
+              <td><%= property.owner.name %></td>
+            </tr>
+            <tr>
+              <td>Lease start:</td>
+              <td><%= property.lease_start %></td>
+            </tr>
+            <tr>
+              <td>Lease end:</td>
+              <td>
+                <%= property.lease_end %>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
-      <div class='prop-span-right'>
-        <table>
-          <tr>
-            <td>Owner:</td>
-            <td><%= property.owner.name %></td>
-          </tr>
-          <tr>
-            <td>Lease start:</td>
-            <td><%= property.lease_start %></td>
-          </tr>
-          <tr>
-            <td>Lease end:</td>
-            <td>
-              <%= property.lease_end %>
-            </td>
-          </tr>
-        </table>
+    </div>
+    <div class="side-container">
+      <div class="side-list">
+
       </div>
     </div>
   </div>
-  <div class="prop-side-container">
+  <div class="spacer">
 
   </div>
 </div>
