@@ -1,42 +1,39 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-Tenant.destroy_all
-Owner.destroy_all
+User.destroy_all
 Property.destroy_all
 PropertyImage.destroy_all
 
 
 tenant_array = []
 15.times do
-  create = User.create!(
-  type: 'Tenant',
-  name: Faker::Name.unique.name,
-  email: Faker::Internet.email,
-  phone: Faker::PhoneNumber.cell_phone,
-  password_digest: 'chicken',
-  verified: Faker::Boolean.boolean
+  create = Tenant.create!(
+    name: Faker::Name.unique.name,
+    email: Faker::Internet.email,
+    phone: Faker::PhoneNumber.cell_phone,
+    password: 'chicken',
+    verified: Faker::Boolean.boolean
   )
   tenant_array.push create
 end
 
-puts "15 tenants created"
+puts "5 tenants created"
 
 owner_array = []
 5.times do
-  create = User.create!(
-    type: 'Owner',
+  create = Owner.create!(
     name: Faker::Name.unique.name,
     email: Faker::Internet.email,
     phone: Faker::PhoneNumber.cell_phone,
-    password_digest: 'chicken',
+    password: 'chicken',
     verified: Faker::Boolean.boolean
   )
   owner_array.push create
 end
 
 puts "5 owners created"
-TODO make seperate fields for adress
+# TODO make seperate fields for adress
 property_array = [];
 10.times do |i|
   create = Property.create!(
@@ -59,7 +56,7 @@ property_array = [];
   property_array.push create
 end
 
-puts "10 properties created"
+puts "5 owners created"
 
 image_array = []
 100.times do |i|
@@ -70,10 +67,8 @@ image_array = []
   image_array.push create
 end
 
-puts "100 images created"
-
 5.times do |i|
-  tenant_array[i].properties <<  property_array[i] << property_array[i + 5]
+  owner_array[i].properties <<  property_array[i] << property_array[i + 5]
 end
 
 puts "Testing owners -< properties associations:"

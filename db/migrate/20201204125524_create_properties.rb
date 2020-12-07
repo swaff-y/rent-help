@@ -16,8 +16,8 @@ class CreateProperties < ActiveRecord::Migration[5.2]
       t.date :lease_start
       t.date :lease_end
       t.text :cover_image
-      t.integer :owner_id
-      
+      t.integer :user_id
+
       t.timestamps
     end
   end
