@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_05_030838) do
+ActiveRecord::Schema.define(version: 2020_12_07_000854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "owners", force: :cascade do |t|
-    t.text "display_name"
-    t.text "name"
-    t.text "email"
-    t.integer "phone"
-    t.text "password_digest"
-    t.boolean "verified"
-    t.integer "property_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "properties", force: :cascade do |t|
     t.text "unit"
@@ -43,14 +31,9 @@ ActiveRecord::Schema.define(version: 2020_12_05_030838) do
     t.date "lease_start"
     t.date "lease_end"
     t.text "cover_image"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
-  end
-
-  create_table "properties_tenants", force: :cascade do |t|
-    t.integer "property_id"
-    t.integer "tenant_id"
   end
 
   create_table "property_images", force: :cascade do |t|
@@ -61,11 +44,16 @@ ActiveRecord::Schema.define(version: 2020_12_05_030838) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tenants", force: :cascade do |t|
-    t.text "display_name"
+  create_table "property_users", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "type"
     t.text "name"
     t.text "email"
-    t.text "phone"
+    t.integer "phone"
     t.text "password_digest"
     t.boolean "verified"
     t.datetime "created_at", null: false

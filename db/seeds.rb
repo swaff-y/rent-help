@@ -9,8 +9,8 @@ PropertyImage.destroy_all
 
 tenant_array = []
 15.times do
-  create = Tenant.create!(
-  display_name: Faker::Name.unique.name,
+  create = User.create!(
+  type: 'Tenant',
   name: Faker::Name.unique.name,
   email: Faker::Internet.email,
   phone: Faker::PhoneNumber.cell_phone,
@@ -20,12 +20,12 @@ tenant_array = []
   tenant_array.push create
 end
 
-puts "5 tenants created"
+puts "15 tenants created"
 
 owner_array = []
 5.times do
-  create = Owner.create!(
-    display_name: Faker::Name.unique.name,
+  create = User.create!(
+    type: 'Owner',
     name: Faker::Name.unique.name,
     email: Faker::Internet.email,
     phone: Faker::PhoneNumber.cell_phone,
@@ -36,7 +36,7 @@ owner_array = []
 end
 
 puts "5 owners created"
-# TODO make seperate fields for adress
+TODO make seperate fields for adress
 property_array = [];
 10.times do |i|
   create = Property.create!(
@@ -59,7 +59,7 @@ property_array = [];
   property_array.push create
 end
 
-puts "5 owners created"
+puts "10 properties created"
 
 image_array = []
 100.times do |i|
@@ -70,8 +70,10 @@ image_array = []
   image_array.push create
 end
 
+puts "100 images created"
+
 5.times do |i|
-  owner_array[i].properties <<  property_array[i] << property_array[i + 5]
+  tenant_array[i].properties <<  property_array[i] << property_array[i + 5]
 end
 
 puts "Testing owners -< properties associations:"
