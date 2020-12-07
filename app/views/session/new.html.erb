@@ -1,24 +1,33 @@
-<h2>Login</h2>
 
-<% if flash[:error] %>
-  <br>
-  <strong>
-    <%= flash[:error] %>
-  </strong>
-  <br>
-  <br>
-<%  end %>
+  <%= form_with url: login_path, local: true , class: "modal-content-static animate" do |f| %>
 
-<%= form_with url: login_path, local: true do |f| %>
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <%= image_tag "logo.png", class: "avatar", alt: "logo"%>
+    </div>
 
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
-  <br>
+    <% if flash[:error] %>
+    <br>
+    <strong class="login-error">
+      <%= flash[:error] %>
+    </strong>
+    <br>
+    <br>
+  <%  end %>
 
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <br>
+    <div class="container">
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "Email", required: "required" %>
 
-  <%= f.submit 'Login' %>
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: "Password", required: "required" %>
 
-<% end %>
+      <%= f.submit 'Login', class: "login-button" %>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="window.location.href = '../'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  <% end %>

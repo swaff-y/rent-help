@@ -34,12 +34,13 @@
       </div>
       <div class="grid-child nav-bar">
         <% if @current_user.present? %>
-          <span>Welcome, <%= @current_user.name %> <%= link_to 'Logout', login_path, method: 'delete', class: "login-links" %></span>
+          <%= link_to user_path(@current_user.id), class: "login-links" do %>
+          <span>Welcome, <%= @current_user.name %> <%= link_to 'Logout', login_path, method: 'delete',class: "login-links" %></span>
+          <% end %>
         <% else %>
           <span></span>
-          <%= link_to login_path, class: "login-links" do %>
-          <span>Sign In</span>
-          <% end %>
+
+          <span class="login-links" onclick="document.getElementById('id01').style.display='block'">Sign In</span>
           <%= link_to new_user_path, class: "login-links" do %>
           <span>Sign Up</span>
           <% end %>
@@ -47,9 +48,37 @@
       </div>
     </div>
     </header>
+
     <div class="main-container">
     <%= yield %>
     </div>
+
+    <!-- Login form -->
+    <div id="id01" class="modal">
+      <%= form_with url: login_path, local: true , class: "modal-content animate" do |f| %>
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <%= image_tag "logo.png", class: "avatar", alt: "logo"%>
+        </div>
+
+        <div class="container">
+          <%= f.label :email %>
+          <%= f.text_field :email, placeholder: "Email", required: "required" %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, placeholder: "Password", required: "required" %>
+
+          <%= f.submit 'Login', class: "login-button" %>
+
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      <% end %>
+    </div>
+
     <footer>
       <hr>
       footer
