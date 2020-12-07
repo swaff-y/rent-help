@@ -1,2 +1,61 @@
-<h1>Properties#show</h1>
-<p>Find me in app/views/properties/show.html.erb</p>
+<div class="prop-show-container">
+  <div class="prop-show-inner-left">
+    <p class="large-text"><%= @property.unit %> / <%= @property.street %></br><%= @property.city %> / <%= @property.state %>,</br><%= @property.postcode %></p>
+    <p class="letter-line">
+      <%=image_tag "bed.jpg", class: "home-img" %> <%= @property.bedrooms %>
+      <%=image_tag "bath.jpg", class: "home-img" %> <%= @property.bathrooms %>
+      <%=image_tag "garage.jpg", class: "home-img" %> <%= @property.garage %>
+    </p>
+    <p><strong>Area:</strong> <span class="blue-text"><%= @property.area %> sqm </span> |   <strong>Storage Area:</strong> <span class="blue-text">
+      <% if @property.storage == true%>
+        <%= "Yes" %>
+      <% else %>
+        <%= "No" %>
+      <% end %>
+    </span></p>
+    <p></p>
+    <p>Current Owner: <span class="blue-text"><%= link_to @property.owner.name, owner_path(@property.owner.id), class: "ten-link" %></span></p>
+    <p>Previous Tenents:
+      <ul>
+      <% @property.tenants.each do |tenant|%>
+        <li class="blue-text"><%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %></li>
+      <% end %>
+      </ul>
+    </p>
+  </div>
+  <div class="prop-show-inner-right">
+    <div class="prop-show-inner-right-top" onclick="document.getElementById('id02').style.display='block'">
+      <%= image_tag @property.cover_image, class: "image-fill-container" %>
+    </div>
+    <div class="prop-show-inner-right-bottom">
+      <div class="prop-show-inner-bottom-left" onclick="document.getElementById('id02').style.display='block'">
+        <%= image_tag @property.property_images.first.image_url, class: "image-fill-container" %>
+      </div>
+      <div class="prop-show-inner-bottom-center" onclick="document.getElementById('id02').style.display='block'">
+        <%= image_tag @property.property_images.second.image_url, class: "image-fill-container" %>
+      </div>
+      <div class="prop-show-inner-bottom-right" onclick="document.getElementById('id02').style.display='block'">
+        <% len = @property.property_images.length %>
+        <%= image_tag @property.property_images.third.image_url, class: "prop-image-spec" %>
+        <span class="prop-text-spec">+<%= len - 3 %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login form -->
+<div id="id02" class="modal-image">
+  <div class="modal-content-img animate image-pop-container">
+    <div class="imgcontainer-img">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span class="img-left"><%= image_tag "left.png", class: "image-fill-container" %></span>
+      <span class="img-right"><%= image_tag "right.png", class: "image-fill-container" %></span>
+      <%= image_tag @property.property_images.first.image_url, class: "image-fill-container" %>
+    </div>
+  </div>
+</div>
+
+
+<div class="spacer">
+
+</div>
