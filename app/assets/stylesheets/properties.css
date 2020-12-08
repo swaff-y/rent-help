@@ -33,3 +33,36 @@
 .prop-span-left-in-bottom{
   letter-spacing: 8px;
 }
+
+.modal-content-prop {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.container-prop-edit{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  padding: 16px;
+  /* border: 1px solid red; */
+}
+
+.login-button-prop{
+  position: relative;
+  left: 165px;
+  background-color: rgb(23,96,160);
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 60%;
+}
+
+.container-prop-edit-in-left{
+
+}
+.container-prop-edit-in-right{
+
+}

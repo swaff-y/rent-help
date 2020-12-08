@@ -22,6 +22,7 @@
       <% end %>
       </ul>
     </p>
+    <p><%= link_to "Edit", edit_property_path(@property.id), class: "ten-link"  %> | <%= link_to "Delete", property_path(@property.id), class: "ten-link", method: "DELETE"  %></p>
   </div>
   <div class="prop-show-inner-right">
     <div class="prop-show-inner-right-top" onclick="document.getElementById('id02').style.display='block'">

@@ -1,2 +1,72 @@
-<h1>Properties#edit</h1>
-<p>Find me in app/views/properties/edit.html.erb</p>
+<% if @property.errors.full_messages.any? %>
+  <strong>Please correct the following errors:</strong>
+  <ul>
+    <% @property.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end  %>
+  </ul>
+<% end %>
+
+<%= form_with model: @property, url: user_path(@property.id), local: true , class: "modal-content-prop animate" do |f| %>
+    <div class="imgcontainer">
+      <span onclick="window.location.href = '../'" class="close" title="Close Modal">&times;</span>
+      <%= image_tag "logo.png", class: "avatar", alt: "logo"%>
+    </div>
+
+    <div class="container-prop-edit">
+
+    <div class="container-prop-edit-in-left">
+      <%= f.label :unit %>
+      <%= f.text_field :unit, placeholder: "Unit / Apt / .etc" %>
+
+      <%= f.label :street %>
+      <%= f.text_field :street, placeholder: "e.g 32 Wolhuter Street", required: "required" %>
+
+      <%= f.label :city %>
+      <%= f.text_field :city, placeholder: "city", required: "required" %>
+
+      <%= f.label :state %>
+      <%= f.text_field :state, placeholder: "state", required: "required" %>
+
+      <%= f.label :postcode %>
+      <%= f.text_field :postcode, placeholder: "postcode", required: "required" %>
+
+      <%= f.label :lease_start %>
+      <%= f.date_field :lease_start%>
+
+      <%= f.label :lease_end %>
+      <%= f.date_field :lease_end%>
+    </div>
+    <div class="container-prop-edit-in-right">
+      <%= f.label :bathrooms %>
+      <%= f.text_field :bathrooms, placeholder: "2" %>
+
+      <%= f.label :area %>
+      <%= f.text_field :area, placeholder: "23" %>
+
+      <%= f.label :garage %>
+      <%= f.text_field :garage, placeholder: "2" %>
+
+      <%= f.label :storage%>
+      <%= f.collection_select :storage, Property.select(:storage).distinct ,:storage, :storage, include_blank: true %>
+
+      <%= f.label :leased%>
+      <%= f.collection_select :leased, Property.select(:leased).distinct ,:leased, :leased, include_blank: true %>
+
+      <%= f.label :cover_image %>
+      <%= f.file_field :cover_image%>
+
+      <%= f.label :user_id%>
+      <% owner = Owner.all%>
+      <%= f.collection_select :user_id, owner, :id, :name, include_blank: true %>
+
+
+    </div>
+    </div>
+    <%= f.submit 'submit', class: "login-button-prop" %>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="window.location.href = '../'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  <% end %>
