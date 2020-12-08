@@ -6,12 +6,16 @@
     <%= link_to owner_path(owner.id), class: 'ten-link-main' do%>
     <div class="list-container">
       <div class="circle-right-owners">
-        owner
+
       </div>
       <div class="prop-list-in-top">
       </div>
       <div class="prop-list-in-middle"">
-        <%= image_tag owner.properties.first.cover_image, class: "cover-img" %>
+        <% if owner.properties.any? &&  owner.properties.first.cover_image.present? %>
+          <%= image_tag owner.properties.first.cover_image, class: "cover-img" %>
+        <% else %>
+          <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+        <% end %>
       </div>
       <div class="prop-list-in-bottom"">
         <div class='prop-span-left'>

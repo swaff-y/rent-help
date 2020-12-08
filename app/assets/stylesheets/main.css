@@ -95,9 +95,6 @@ nav{
   grid-template-rows: 1fr 3fr 1fr;
   height: 510px;
 }
-.side-container{
-  /* border: 3px green solid; */
-}
 .prop-list-in-top{
   /* border: 1px red solid; */
   position: relative;
@@ -123,6 +120,7 @@ nav{
   height: 100px;
   background-color: white;
   box-shadow: 5px 10px 8px #888888;
+  padding-bottom: 15px;
 }
 .cover-img{
   width:100%;
@@ -152,10 +150,7 @@ nav{
 }
 .prop-span-left-in-bottom{
   /* border: 1px blue solid; */
-  padding-top: 15px;
-}
-.prop-span-left-in-bottom{
-  /* border: 1px green solid; */
+  padding: 15px 0 30px 10px;
 }
 .spacer{
   /* border: 2px red solid; */

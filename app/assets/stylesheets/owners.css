@@ -2,7 +2,8 @@
   position: relative;
   border-radius: 50%;
   border: 1px black solid;
-  background-image: url('http://placekitten.com/100/100');
+  background-image: url('img_avatar2.png');
+  background-size: 100px;
   width: 100px;
   height: 60px;
   padding-top: 40px;

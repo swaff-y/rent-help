@@ -56,3 +56,5 @@ end
 gem 'pry-rails'
 
 gem 'faker'
+
+gem 'cloudinary'

@@ -4,7 +4,17 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    Property.create property_params
+    property = Property.new property_params
+    property.user_id = @current_user.id
+
+    if params[:property][:cover_image].present?
+      response = Cloudinary::Uploader.upload params[:property][:cover_image]
+      p response
+      # save response id into appropriate filed of model object:
+      property.cover_image = response['public_id']
+    end
+
+    property.save
     redirect_to properties_path
   end
 

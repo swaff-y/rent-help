@@ -21,7 +21,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    owner = owner.find params[:id]
+    owner = user.find params[:id]
     owner.update owner_params
     redirect_to owner_path(owner.id)
   end

@@ -41,9 +41,7 @@
           <span></span>
 
           <span class="login-links" onclick="document.getElementById('id01').style.display='block'">Sign In</span>
-          <%= link_to new_user_path, class: "login-links" do %>
-          <span>Sign Up</span>
-          <% end %>
+          <span class="login-links" onclick="document.getElementById('id03').style.display='block'">Sign Up</span>
         <% end %>
       </div>
     </div>
@@ -52,8 +50,8 @@
     <div class="main-container">
     <%= yield %>
     </div>
-    <%= render partial: 'login_form'%>
-
+    <%= render partial: 'pages/login_form'%>
+    <%= render partial: 'pages/new_user_form'%>
     <footer>
       <hr>
       footer

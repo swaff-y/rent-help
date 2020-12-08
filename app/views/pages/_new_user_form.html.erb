@@ -1,0 +1,39 @@
+<!-- New User form -->
+<div id="id03" class="modal">
+  <% @user = User.new %>
+  <%= form_with model: @user, url: users_path, local: true , class: "modal-content animate" do |f| %>
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <%= image_tag "logo.png", class: "avatar", alt: "logo"%>
+    </div>
+
+    <div class="container">
+
+      <%= f.label :type%>
+      <%= f.collection_select :type, User.select(:type).distinct ,:type, :type, include_blank: true %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, placeholder: "Full Name", required: "required" %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, placeholder: "Email", required: "required" %>
+
+      <%= f.label :phone %>
+      <%= f.text_field :phone, placeholder: "e.g. 0450000000" %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: "Password", required: "required" %>
+
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, placeholder: "Password", required: "required" %>
+
+      <%= f.submit 'Sign up', class: "login-button" %>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  <% end %>
+</div>

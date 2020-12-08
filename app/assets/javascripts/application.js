@@ -14,6 +14,7 @@
 //= require_tree .
 var modal = document.getElementById('id01');
 var modal = document.getElementById('id02');
+var modal = document.getElementById('id03');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
