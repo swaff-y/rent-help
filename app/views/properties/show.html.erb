@@ -26,18 +26,18 @@
   </div>
   <div class="prop-show-inner-right">
     <div class="prop-show-inner-right-top" onclick="document.getElementById('id02').style.display='block'">
-      <%= image_tag @property.cover_image, class: "image-fill-container" %>
+      <%= cl_image_tag @property.cover_image, class: "image-fill-container" %>
     </div>
     <div class="prop-show-inner-right-bottom">
       <div class="prop-show-inner-bottom-left" onclick="document.getElementById('id02').style.display='block'">
-        <%= image_tag @property.property_images.first.image_url, class: "image-fill-container" %>
+        <%= cl_image_tag @property.property_images.first.image_url, class: "image-fill-container" %>
       </div>
       <div class="prop-show-inner-bottom-center" onclick="document.getElementById('id02').style.display='block'">
-        <%= image_tag @property.property_images.second.image_url, class: "image-fill-container" %>
+        <%= cl_image_tag @property.property_images.second.image_url, class: "image-fill-container" %>
       </div>
       <div class="prop-show-inner-bottom-right" onclick="document.getElementById('id02').style.display='block'">
         <% len = @property.property_images.length %>
-        <%= image_tag @property.property_images.third.image_url, class: "prop-image-spec" %>
+        <%= cl_image_tag @property.property_images.third.image_url, class: "prop-image-spec" %>
         <span class="prop-text-spec">+<%= len - 3 %></span>
       </div>
     </div>

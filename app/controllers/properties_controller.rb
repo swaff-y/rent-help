@@ -32,11 +32,20 @@ class PropertiesController < ApplicationController
 
   def update
     property = Property.find params[:id]
-    property.update property_params
+    property.attributes = property_params
+    if params[:file].present?
+      req = Cloudinary::Uploader.upload params[:file]
+      puts "====================="
+      p req["public_id"]
+      puts "====================="
+      property.cover_image = req["public_id"]
+
+    end
+    property.save
     redirect_to property_path(property.id)
   end
   private
   def property_params
-    params.require(:property).permit()
+    params.require(:property).permit(:unit, :street, :city, :state, :postcode, :lease_start, :lease_end, :bathrooms, :area, :garage, :storage, :leased, :cover_image, :user_id)
   end
 end
