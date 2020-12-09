@@ -12,7 +12,7 @@
       </div>
       <div class="prop-list-in-middle"">
         <% if owner.properties.any? &&  owner.properties.first.cover_image.present? %>
-          <%= image_tag owner.properties.first.cover_image, class: "cover-img" %>
+          <%= cl_image_tag owner.properties.first.cover_image, class: "cover-img" %>
         <% else %>
           <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
         <% end %>

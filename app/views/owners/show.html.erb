@@ -1,2 +1,82 @@
-<h1>Owners#show</h1>
-<p>Find me in app/views/owners/show.html.erb</p>
+<div class="prop-show-container">
+  <div class="prop-show-inner-left">
+    <p class="large-text"><%= @owner.name%></p>
+    <p><strong>Email:</strong> <span class="blue-text"><%= @owner.email%></span></p>
+
+    <p>Owner Properties:
+      <ul>
+      <% @owner.properties.each do |property|%>
+        <li class="blue-text"><%= link_to property.street, property_path(property.id), class: "ten-link"  %></li>
+      <% end %>
+      </ul>
+    </p>
+    <% if @current_user.id == @owner.id %>
+    <p><%= link_to "Edit", edit_user_path(@owner.id), class: "ten-link"  %> | <%= link_to "Delete", user_path(@owner.id), class: "ten-link", method: "DELETE"  %></p>
+    <p><span class="ten-link" onclick="document.getElementById('id06').style.display='block'">Link Property</span></p>
+    <% end %>
+  </div>
+  <div class="prop-show-inner-right">
+    <div class="prop-show-inner-right-top" onclick="document.getElementById('id04').style.display='block'">
+      <% if @owner.properties.any? &&  @owner.properties.last.cover_image.present? %>
+        <%= cl_image_tag @owner.properties.last.cover_image, class: "image-fill-container" %>
+      <% else %>
+          <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+      <% end %>
+    </div>
+    <div class="prop-show-inner-right-bottom">
+      <div class="prop-show-inner-bottom-left" onclick="document.getElementById('id04').style.display='block'">
+        <% if @owner.properties.any? &&  @owner.properties.last.property_images.first.image_url.present? %>
+          <%= cl_image_tag @owner.properties.last.property_images.first.image_url, class: "image-fill-container" %>
+        <% else %>
+          <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+        <% end %>
+
+      </div>
+      <div class="prop-show-inner-bottom-center" onclick="document.getElementById('id04').style.display='block'">
+        <% if @owner.properties.any? &&  @owner.properties.last.property_images.second.image_url.present? %>
+      <%= cl_image_tag @owner.properties.last.property_images.second.image_url, class: "image-fill-container" %>
+        <% else %>
+            <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+        <% end %>
+
+      </div>
+      <div class="prop-show-inner-bottom-right" onclick="document.getElementById('id04').style.display='block'">
+        <% if @owner.properties.any? &&  @owner.properties.last.property_images.third.image_url.present? %>
+          <%= cl_image_tag @owner.properties.last.property_images.third.image_url, class: "prop-image-spec" %>
+        <% else %>
+          <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+        <% end %>
+
+        <% if @owner.properties.any? &&  @owner.properties.last.cover_image.present? %>
+          <% len = @owner.properties.last.property_images.length %>
+        <% else %>
+          <% len = 3%>
+        <% end %>
+        <span class="prop-text-spec">+<%= len - 3 %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Login form -->
+<div id="id04" class="modal-image">
+  <div class="modal-content-img animate image-pop-container">
+    <div class="imgcontainer-img">
+      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <span class="img-left"><%= image_tag "left.png", class: "image-fill-container" %></span>
+      <span class="img-right"><%= image_tag "right.png", class: "image-fill-container" %></span>
+      <span class="img-right"><%= image_tag "right.png", class: "image-fill-container" %></span>
+      <% if @owner.properties.any? &&  @owner.properties.last.cover_image.present? %>
+        <%= cl_image_tag @owner.properties.last.cover_image, class: "image-fill-container" %>
+      <% else %>
+        <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="spacer">
+
+</div>

@@ -7,9 +7,9 @@
   </ul>
 <% end %>
 
-<%= form_with model: @user, url: user_path(@user.id), local: true , class: "modal-content animate" do |f| %>
+<%= form_with model: @user, local: true , class: "modal-content animate" do |f| %>
     <div class="imgcontainer">
-      <span onclick="window.location.href = '../'" class="close" title="Close Modal">&times;</span>
+      <span onclick="window.location.href = '/'" class="close" title="Close Modal">&times;</span>
       <%= image_tag "logo.png", class: "avatar", alt: "logo"%>
     </div>
 
@@ -38,7 +38,7 @@
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="window.location.href = '../'" class="cancelbtn">Cancel</button>
+      <button type="button" onclick="window.location.href = '/'" class="cancelbtn">Cancel</button>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   <% end %>

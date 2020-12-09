@@ -34,7 +34,7 @@
       </div>
       <div class="grid-child nav-bar">
         <% if @current_user.present? %>
-          <%= link_to user_path(@current_user.id), class: "login-links" do %>
+          <%= link_to edit_user_path(@current_user.id), class: "login-links" do %>
           <span>Welcome, <%= @current_user.name %> <%= link_to 'Logout', login_path, method: 'delete',class: "login-links" %></span>
           <% end %>
         <% else %>
@@ -52,6 +52,8 @@
     </div>
     <%= render partial: 'pages/login_form'%>
     <%= render partial: 'pages/new_user_form'%>
+    <%= render partial: 'pages/prop_ten_link_form'%>
+    <%= render partial: 'pages/prop_own_link_form'%>
     <footer>
       <hr>
       footer

@@ -26,7 +26,7 @@
   </div>
   <div class="prop-show-inner-right">
     <div class="prop-show-inner-right-top" onclick="document.getElementById('id02').style.display='block'">
-      <%= cl_image_tag @property.cover_image, class: "image-fill-container" %>
+        <%= cl_image_tag @property.cover_image, class: "image-fill-container" %>
     </div>
     <div class="prop-show-inner-right-bottom">
       <div class="prop-show-inner-bottom-left" onclick="document.getElementById('id02').style.display='block'">
@@ -44,14 +44,44 @@
   </div>
 </div>
 
-<!-- Login form -->
+<!-- Image slider modal -->
 <div id="id02" class="modal-image">
   <div class="modal-content-img animate image-pop-container">
     <div class="imgcontainer-img">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <span class="img-left"><%= image_tag "left.png", class: "image-fill-container" %></span>
-      <span class="img-right"><%= image_tag "right.png", class: "image-fill-container" %></span>
-      <%= image_tag @property.property_images.first.image_url, class: "image-fill-container" %>
+      <%= cl_image_tag @property.cover_image, id: "hide", class: "image-fill-container" %>
+      <div class="slideshow-container">
+  <% i = 1 %>
+  <% leng = @property.property_images.length %>
+  <% @property.property_images.each do |image| %>
+
+      <div class="mySlides fade">
+        <div class="numbertext"><%= i %> / <%= leng %></div>
+        <% if i == 1 %>
+          <%= cl_image_tag @property.cover_image, class: "image-fill-container" %>
+        <% else %>
+          <%= cl_image_tag image.image_url, class: "image-fill-container" %>
+        <% end %>
+        <div class="text"><%= image.name %></div>
+      </div>
+
+  <% i += 1%>
+  <% end %>
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+      </div>
+      <br>
+
+      <div style="text-align:center">
+      <% i = 1 %>
+      <% @property.property_images.each do |image| %>
+        <span class="dot" onclick="currentSlide(<%=i%>)"></span>
+      <% i += 1%>
+      <% end %>
+      </div>
+
     </div>
   </div>
 </div>

@@ -1,19 +1,16 @@
 class TenantsController < ApplicationController
-  def new
-    @tenant = Tenant.new
-  end
 
-  def create
-    Tenant.create tenant_params
-    redirect_to tenants_path
-  end
 
   def index
     @tenants = Tenant.all
   end
 
   def show
-    @tenant = Tenant.find params[:id]
+    if @current_user.present?
+      @tenant = Tenant.find params[:id]
+    else
+      redirect_to login_path
+    end
   end
 
   def edit
@@ -22,11 +19,20 @@ class TenantsController < ApplicationController
 
   def update
     tenant = Tenant.find params[:id]
-    tenant.update tenant_params
-    redirect_to tenant_path(tenant.id)
+    user.update tenant_params
+
+    redirect_to root_path
   end
+
+  def property_link
+    property = Property.all
+    # raise "hell"
+    @current_user.properties << property.find(params[:property_id])
+    redirect_to tenant_path(@current_user.id)
+  end
+
   private
   def tenant_params
-    params.require(:tenant).permit(:display_name, :name, :email, :phone, :password_digest, :verified)
+    params.require(:tenant).permit(:id)
   end
 end

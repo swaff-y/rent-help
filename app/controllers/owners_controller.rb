@@ -1,19 +1,16 @@
 class OwnersController < ApplicationController
-  def new
-    @owner = Owner.new
-  end
 
-  def create
-    Owner.create owner_params
-    redirect_to owners_path
-  end
 
   def index
     @owners = Owner.all
   end
 
   def show
-    @owner = Owner.find params[:id]
+    if @current_user.present?
+      @owner = Owner.find params[:id]
+    else
+      redirect_to login_path
+    end
   end
 
   def edit
@@ -21,12 +18,21 @@ class OwnersController < ApplicationController
   end
 
   def update
-    owner = user.find params[:id]
+    owner = Owner.find params[:id]
     owner.update owner_params
-    redirect_to owner_path(owner.id)
+
+    redirect_to root_path
   end
+
+  def property_link
+    property = Property.all
+    # raise "hell"
+    @current_user.properties << property.find(params[:property_id])
+    redirect_to owner_path(@current_user.id)
+  end
+
   private
   def owner_params
-    params.require(:owner).permit(:display_name, :name, :email, :phone, :password_digest, :verified, :property_id)
+    params.require(:owner).permit(:property_id)
   end
 end

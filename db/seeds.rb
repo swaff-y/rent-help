@@ -51,7 +51,7 @@ property_array = [];
     leased: Faker::Boolean.boolean,
     lease_start: Faker::Date.between(from: '2020-04-01', to: '2020-06-01'),
     lease_end: Faker::Date.between(from: '2020-10-01', to: '2020-12-01'),
-    cover_image: 'http://www.fillmurray.com/300/200',
+    cover_image: 'https://res.cloudinary.com/dhl1cdqch/image/upload/v1607434508/prop-placehold_zmrdbw.jpg',
   )
   property_array.push create
 end
@@ -62,7 +62,7 @@ image_array = []
 100.times do |i|
   create = PropertyImage.create!(
     name: Faker::Lorem.word,
-    image_url: Faker::Fillmurray.image(grayscale: false, width: 400, height: 200)
+    image_url: "https://res.cloudinary.com/dhl1cdqch/image/upload/v1607434508/prop-placehold_zmrdbw.jpg"
   )
   image_array.push create
 end
