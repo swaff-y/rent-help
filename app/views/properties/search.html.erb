@@ -1,0 +1,74 @@
+
+<%@results.each do |property| %>
+
+<div class="prop-main">
+  <div class="prop-list-container">
+    <%= link_to property_path(property.id), class: 'ten-link-main' do%>
+    <div class="list-container">
+      <% if property.leased == true %>
+      <% start = property.lease_start %>
+      <% end_date = property.lease_end %>
+      <div class="circle-right-top">
+        Leased
+      </div>
+      <% else %>
+      <% start = "" %>
+      <% end_date = "" %>
+      <div class="circle-right-bottom">
+        Not Leased
+      </div>
+      <% end %>
+      <div class="prop-list-in-top">
+      </div>
+      <div class="prop-list-in-middle"">
+        <%= cl_image_tag property.cover_image, class: "cover-img" %>
+      </div>
+      <div class="prop-list-in-bottom"">
+        <div class='prop-span-left'>
+          <div class="prop-span-left-in-top">
+            <%= property.unit %> <%= property.street %> <br>
+            <%= property.city %> <%= property.state %>, <%= property.postcode %>
+          </div>
+
+          <div class="prop-span-left-in-bottom">
+            <%=image_tag "bed.jpg", class: "home-img" %> <%= property.bedrooms %>
+            <%=image_tag "bath.jpg", class: "home-img" %> <%= property.bathrooms %>
+            <%=image_tag "garage.jpg", class: "home-img" %> <%= property.garage %>
+          </div>
+        </div>
+        <div class='prop-span-right'>
+          <table>
+            <tr>
+              <td class="align-right"><span class="bold">Owner:</span></td>
+              <td><%= link_to property.owner.name, owner_path(property.owner.id), class: "ten-link" %></td>
+            </tr>
+            <tr>
+              <td class="align-right"><span class="bold">Lease start:</span></td>
+              <td><%= start %></td>
+            </tr>
+            <tr>
+              <td><span class="bold">Lease end:</span></td>
+              <td>
+                <%= end_date %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <div class="side-container">
+      <div class="side-list">
+        <h2>Previous Tenants</h2>
+          <% property.tenants.each do |tenant|%>
+          <p class="prop-lists" ><%=link_to tenant.name, tenant_path(tenant.id), class: "ten-link"%></p>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer">
+
+  </div>
+
+<% end %>

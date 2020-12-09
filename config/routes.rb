@@ -10,6 +10,7 @@ post '/tenants/link' => 'tenants#property_link'
 post '/owners/link' => 'owners#property_link'
 
 post '/property/image' => 'properties#image_upload'
+post '/property/search' => 'properties#search'
 
 resources :tenants
 resources :owners

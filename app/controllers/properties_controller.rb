@@ -50,6 +50,10 @@ class PropertiesController < ApplicationController
     redirect_to property_path(params[:id])
   end
 
+  def search
+    @results = Property.near(params[:search], 50, units: :km) 
+  end
+
   private
   def property_params
     params.require(:property).permit(:unit, :street, :city, :state, :postcode, :lease_start, :lease_end, :bathrooms, :area, :garage, :storage, :leased, :cover_image, :user_id)
