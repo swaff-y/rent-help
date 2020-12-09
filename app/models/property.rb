@@ -8,6 +8,10 @@ class Property < ApplicationRecord
   end
 
   def full_address
-  "#{unit} / #{street}, #{city}, #{state}, #{postcode}"
+  "#{unit}  #{street}, #{city}, #{state}, #{postcode}"
   end
+
+  #Geocoding
+  after_validation :geocode
+  geocoded_by :full_address
 end

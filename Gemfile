@@ -58,3 +58,5 @@ gem 'pry-rails'
 gem 'faker'
 
 gem 'cloudinary'
+
+gem "geocoder", "~> 1.6"

@@ -66,15 +66,15 @@
       <%= cl_image_tag @tenant.properties.last.cover_image, id: "hide", class: "image-fill-container" %>
 
   <% i = 1 %>
-  <% leng = @tenant.properties.last.property_images.length %>
-  <% @tenant.properties.last.property_images.each do |image| %>
+  <% leng = @tenant.properties.each %>
+  <% @tenant.properties.pluck(:cover_image) do |image| %>
 
       <div class="mySlides fade">
         <div class="numbertext"><%= i %> / <%= leng %></div>
         <% if i == 1 %>
-          <%= cl_image_tag @tenant.properties.last.cover_image, class: "image-fill-container" %>
+          <%= cl_image_tag image.cover_image, class: "image-fill-container" %>
         <% else %>
-          <%= cl_image_tag image.image_url, class: "image-fill-container" %>
+          <%= cl_image_tag image.cover_image, class: "image-fill-container" %>
         <% end %>
 
       </div>
