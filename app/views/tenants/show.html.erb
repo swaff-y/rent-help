@@ -63,20 +63,19 @@
   <div class="modal-content-img animate image-pop-container">
     <div class="imgcontainer-img">
       <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <%= cl_image_tag @tenant.properties.last.cover_image, id: "hide", class: "image-fill-container" %>
 
+      <% if @tenant.properties.any? &&  @tenant.properties.last.cover_image.present? %>
+        <%= cl_image_tag @tenant.properties.first.cover_image, class: "image-fill-container", id: "hide" %>
+      <% else %>
+        <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+      <% end %>
   <% i = 1 %>
-  <% leng = @tenant.properties.each %>
-  <% @tenant.properties.pluck(:cover_image) do |image| %>
+  <% leng = @tenant.properties.all.length %>
+  <% @tenant.properties.all.each do |image| %>
 
       <div class="mySlides fade">
         <div class="numbertext"><%= i %> / <%= leng %></div>
-        <% if i == 1 %>
           <%= cl_image_tag image.cover_image, class: "image-fill-container" %>
-        <% else %>
-          <%= cl_image_tag image.cover_image, class: "image-fill-container" %>
-        <% end %>
-
       </div>
 
   <% i += 1%>
@@ -89,7 +88,7 @@
 
       <div style="text-align:center">
       <% i = 1 %>
-      <% @tenant.properties.last.property_images.each do |image| %>
+      <% @tenant.properties.all.each do |image| %>
         <span class="dot" onclick="currentSlide(<%=i%>)"></span>
       <% i += 1%>
       <% end %>

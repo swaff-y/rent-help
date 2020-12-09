@@ -1,6 +1,6 @@
 <div class="prop-show-container">
   <div class="prop-show-inner-left">
-    <p class="large-text"><%= @property.unit %> / <%= @property.street %></br><%= @property.city %> / <%= @property.state %>,</br><%= @property.postcode %></p>
+    <p class="large-text"><%= @property.unit %> <br> <%= @property.street %> <br> <%= @property.city %> <br> <%= @property.state %> <br> <%= @property.postcode %></p>
     <p class="letter-line">
       <%=image_tag "bed.jpg", class: "home-img" %> <%= @property.bedrooms %>
       <%=image_tag "bath.jpg", class: "home-img" %> <%= @property.bathrooms %>
@@ -22,6 +22,21 @@
       <% end %>
       </ul>
     </p>
+<script type="text/javascript">
+  function initMap() {
+    const myLatLng = { lat: <%=@property.latitude%> , lng: <%=@property.longitude%> };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 13,
+      center: myLatLng,
+    });
+    new google.maps.Marker({
+      position: myLatLng,
+      map,
+      title: "",
+    });
+  }
+</script>
+    <div id="map"></div>
     <p><%= link_to "Edit", edit_property_path(@property.id), class: "ten-link"  %> | <%= link_to "Delete", property_path(@property.id), class: "ten-link", method: "DELETE"  %></p>
   </div>
   <div class="prop-show-inner-right">
@@ -86,6 +101,6 @@
 </div>
 
 
-<div class="spacer">
+<div class="spacer-prop">
 
 </div>
