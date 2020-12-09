@@ -47,7 +47,6 @@
       </div>
     </div>
     </header>
-
     <div class="main-container">
     <%= yield %>
     </div>
@@ -55,9 +54,26 @@
     <%= render partial: 'pages/new_user_form'%>
     <%= render partial: 'pages/prop_ten_link_form'%>
     <%= render partial: 'pages/prop_own_link_form'%>
+    <%= render partial: 'pages/image_upload_form'%>
     <footer>
-      <hr>
-      footer
+      <div class="footer-container">
+        <div class="social">
+          <div class="social-indv-container">
+            <%=cl_image_tag "github", alt: "github social icon", class: "image-fill-container" %>
+          </div>
+          <div class="social-indv-container">
+            <%=cl_image_tag "facebook", alt: "github social icon", class: "image-fill-container" %>
+          </div>
+          <div class="social-indv-container">
+            <%=cl_image_tag "linkedin", alt: "github social icon", class: "image-fill-container" %>
+          </div>
+        </div>
+        <div class="sitemap">
+          <span>About us</span>
+          <span>Contact us</span>
+          <span>Careers</span>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

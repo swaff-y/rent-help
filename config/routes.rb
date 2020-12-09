@@ -9,6 +9,8 @@ delete '/login' => 'session#destroy'  # logout link goes here, perform logout, r
 post '/tenants/link' => 'tenants#property_link'
 post '/owners/link' => 'owners#property_link'
 
+post '/property/image' => 'properties#image_upload'
+
 resources :tenants
 resources :owners
 resources :properties

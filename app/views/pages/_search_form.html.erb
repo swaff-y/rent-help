@@ -1,0 +1,7 @@
+
+  <%= form_with url: properties_path, local: true , class: "modal-content animate" do |f| %>
+    <div class="container">
+      <%= f.text_field :search, placeholder: "e.g 801/1 Scott Street Newcastle NSW 2300" %>
+      <%= f.submit 'Property Search', class: "login-button" %>
+    </div>
+  <% end %>

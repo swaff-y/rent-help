@@ -32,7 +32,7 @@
           <% tenant.properties.each do |property|
               address = property.unit + " / " + property.street
           %>
-          <p class="prop-lists" ><%=link_to address, property_path(property.id), class: "ten-link"%></p>
+          <p class="prop-lists" ><%=link_to property.full_address, property_path(property.id), class: "ten-link"%></p>
           <% end %>
       </div>
     </div>

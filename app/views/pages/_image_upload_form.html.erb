@@ -1,0 +1,21 @@
+<div id="id09" class="modal">
+
+  <%= form_with url: owners_link_path, local: true , class: "modal-content animate" do |f| %>
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id09').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <%= image_tag "logo.png", class: "avatar", alt: "logo"%>
+    </div>
+
+    <div class="container">
+      <%= f.label :property_id, "Select Property"%>
+      <%= f.collection_select :property_id, Property.all, :id, :address, include_blank: true %>
+
+      <%= f.submit 'Upload Images', class: "login-button" %>
+
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id09').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+  <% end %>
+</div>

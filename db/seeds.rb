@@ -18,7 +18,7 @@ tenant_array = []
   tenant_array.push create
 end
 
-puts "5 tenants created"
+puts "15 tenants created"
 
 owner_array = []
 5.times do
@@ -33,15 +33,34 @@ owner_array = []
 end
 
 puts "5 owners created"
-# TODO make seperate fields for adress
+
+owner_admin = Owner.create!(
+
+  name: "admin",
+  email: "admin@rent-help.pt",
+  phone: 0000000000,
+  password: "chicken",
+  verified: true
+)
+
+puts "admin created"
+
 property_array = [];
 10.times do |i|
+  num = rand 1..10
+  num = num.to_s
+
+  streets = ["104 Fairway Drive", "59 Brickmans Lane", "135 Vermont Road", "2 Surfleet Place", "6 Goodwin Road", "372 Old Northern Road", "7-9 Warners Avenue", "471 Captain Cook Drive", "156 Tallai Road", "1 Beatrice Terrace"]
+  cities = ["Baulkham Hills", "Lovedale", "Mulbring", "Kiama", "Newport", "Castle Hill", "Willoughby","Woolooware", "Tallai", "Ascot"]
+  states = [ "NSW", "NSW", "NSW", "NSW", "NSW", "NSW", "NSW", "NSW", "QLD", "QLD",]
+  postcodes = ["2153", "2325", "2323", "2533", "2106", "2154", "2068", "2230", "4213", "4007"]
+
   create = Property.create!(
-    unit: Faker::Address.secondary_address,
-    street: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    postcode: rand(1000..9000),
+    unit: '',
+    street: streets[i],
+    city: cities[i],
+    state: states[i],
+    postcode: postcodes[i],
     bedrooms: rand(1..5),
     description: Faker::Lorem.paragraphs,
     bathrooms: rand(1..3),
@@ -51,21 +70,25 @@ property_array = [];
     leased: Faker::Boolean.boolean,
     lease_start: Faker::Date.between(from: '2020-04-01', to: '2020-06-01'),
     lease_end: Faker::Date.between(from: '2020-10-01', to: '2020-12-01'),
-    cover_image: 'https://res.cloudinary.com/dhl1cdqch/image/upload/v1607434508/prop-placehold_zmrdbw.jpg',
+    cover_image: "image" + num  + ".jpeg",
   )
   property_array.push create
 end
 
-puts "5 owners created"
+puts "10 properties created"
 
 image_array = []
 100.times do |i|
+  num = rand 1..10
+  num = num.to_s
   create = PropertyImage.create!(
     name: Faker::Lorem.word,
-    image_url: "https://res.cloudinary.com/dhl1cdqch/image/upload/v1607434508/prop-placehold_zmrdbw.jpg"
+    image_url: "image" + num  + ".jpeg"
   )
   image_array.push create
 end
+
+puts "100 images created"
 
 5.times do |i|
   owner_array[i].properties <<  property_array[i] << property_array[i + 5]

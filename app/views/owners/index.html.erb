@@ -1,6 +1,6 @@
 
 <%@owners.each do |owner| %>
-
+<% unless owner.name == "admin" %>
 <div class="prop-main">
   <div class="prop-list-container">
     <%= link_to owner_path(owner.id), class: 'ten-link-main' do%>
@@ -29,10 +29,8 @@
     <div class="side-container">
       <div class="side-list">
         <h2>Owner Properties</h2>
-          <% owner.properties.each do |property|
-              address = property.unit + " / " + property.street
-          %>
-          <p class="prop-lists" ><%=link_to address, property_path(property.id), class: "ten-link"%></p>
+          <% owner.properties.each do |property| %>
+          <p class="prop-lists" ><%=link_to property.full_address, property_path(property.id), class: "ten-link"%></p>
           <% end %>
       </div>
     </div>
@@ -41,4 +39,5 @@
 
   </div>
 </div>
+<% end %>
 <% end %>

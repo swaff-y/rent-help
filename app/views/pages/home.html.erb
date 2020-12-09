@@ -1,3 +1,36 @@
 <div class="home-main">
   <%= image_tag image_url('back.jpg'), class: "back"%>
 </div>
+
+<div class="search-container">
+  <%= render partial: 'pages/search_form'%>
+</div>
+
+<div class="big-spacer">
+
+</div>
+
+<div class="ad-container">
+    <h2 class="main-header" >Featured Properties</h2>
+  <div class="best-home-properties-container">
+    <% i = 1 %>
+    <% array = []%>
+    <%  Property.all.each do |property| %>
+      <% array = array.push i  %>
+      <% i += 1 %>
+    <% end %>
+    <% i = 1 %>
+    <% ran = array.sample(3) %>
+    <%  Property.all.each do |property| %>
+      <% if i == ran[0] || i == ran[1] || i == ran[2] %>
+    <div class="inner">
+      <%= link_to property_path(property.id) do %>
+      <%= cl_image_tag property.cover_image, alt: "Best Property", class: "image-fill-container" %>
+      <% end %>
+    </div>
+      <% end %>
+      <% i += 1%>
+    <% end %>
+  </div>
+
+</div>

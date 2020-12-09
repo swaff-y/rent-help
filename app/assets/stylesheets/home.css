@@ -4,3 +4,59 @@
   background-repeat: no-repeat;
   opacity: 0.5;
 }
+.search-container{
+  position: absolute;
+  max-width: 1068px;
+  top: 120px;
+  width: 80%;
+}
+.big-spacer{
+  height: 200px;
+}
+.ad-container{
+  position: absolute;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 40px;
+  top: 320px;
+  left: 0;
+  width: 100%;
+  /* border: 3px solid yellow; */
+}
+.main-header{
+  margin: auto;
+}
+.best-home-properties-container{
+  position: relative;
+  margin: auto;
+  width: 100%;
+  max-width: 1068px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.best-home-tenants-container{
+  position: relative;
+  margin: auto;
+  width: 100%;
+  max-width: 1068px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+.inner{
+  /* border: 1px solid red; */
+  width: 90%;
+  height: 200px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.main-header{
+  position:relative;
+  margin: auto;
+  top: 80px;
+}
+
+.bottom{
+  top: 0;
+}

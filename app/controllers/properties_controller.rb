@@ -44,6 +44,12 @@ class PropertiesController < ApplicationController
     property.save
     redirect_to property_path(property.id)
   end
+
+  def image_upload
+
+    redirect_to property_path(params[:id])
+  end
+
   private
   def property_params
     params.require(:property).permit(:unit, :street, :city, :state, :postcode, :lease_start, :lease_end, :bathrooms, :area, :garage, :storage, :leased, :cover_image, :user_id)
