@@ -18,6 +18,8 @@ var modal = document.getElementById('id03');
 var modal = document.getElementById('id04');
 var modal = document.getElementById('id05');
 var modal = document.getElementById('id06');
+var modal = document.getElementById('id07');
+var modal = document.getElementById('id08');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

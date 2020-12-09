@@ -50,7 +50,7 @@
     <div class="imgcontainer-img">
       <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
       <%= cl_image_tag @property.cover_image, id: "hide", class: "image-fill-container" %>
-      <div class="slideshow-container">
+
   <% i = 1 %>
   <% leng = @property.property_images.length %>
   <% @property.property_images.each do |image| %>
@@ -62,7 +62,7 @@
         <% else %>
           <%= cl_image_tag image.image_url, class: "image-fill-container" %>
         <% end %>
-        <div class="text"><%= image.name %></div>
+
       </div>
 
   <% i += 1%>
@@ -71,7 +71,6 @@
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-      </div>
       <br>
 
       <div style="text-align:center">

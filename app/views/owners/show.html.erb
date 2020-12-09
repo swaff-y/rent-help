@@ -16,7 +16,7 @@
     <% end %>
   </div>
   <div class="prop-show-inner-right">
-    <div class="prop-show-inner-right-top" onclick="document.getElementById('id04').style.display='block'">
+    <div class="prop-show-inner-right-top" onclick="document.getElementById('id07').style.display='block'">
       <% if @owner.properties.any? &&  @owner.properties.last.cover_image.present? %>
         <%= cl_image_tag @owner.properties.last.cover_image, class: "image-fill-container" %>
       <% else %>
@@ -24,7 +24,7 @@
       <% end %>
     </div>
     <div class="prop-show-inner-right-bottom">
-      <div class="prop-show-inner-bottom-left" onclick="document.getElementById('id04').style.display='block'">
+      <div class="prop-show-inner-bottom-left" onclick="document.getElementById('id07').style.display='block'">
         <% if @owner.properties.any? &&  @owner.properties.last.property_images.first.image_url.present? %>
           <%= cl_image_tag @owner.properties.last.property_images.first.image_url, class: "image-fill-container" %>
         <% else %>
@@ -32,7 +32,7 @@
         <% end %>
 
       </div>
-      <div class="prop-show-inner-bottom-center" onclick="document.getElementById('id04').style.display='block'">
+      <div class="prop-show-inner-bottom-center" onclick="document.getElementById('id07').style.display='block'">
         <% if @owner.properties.any? &&  @owner.properties.last.property_images.second.image_url.present? %>
       <%= cl_image_tag @owner.properties.last.property_images.second.image_url, class: "image-fill-container" %>
         <% else %>
@@ -40,7 +40,7 @@
         <% end %>
 
       </div>
-      <div class="prop-show-inner-bottom-right" onclick="document.getElementById('id04').style.display='block'">
+      <div class="prop-show-inner-bottom-right" onclick="document.getElementById('id07').style.display='block'">
         <% if @owner.properties.any? &&  @owner.properties.last.property_images.third.image_url.present? %>
           <%= cl_image_tag @owner.properties.last.property_images.third.image_url, class: "prop-image-spec" %>
         <% else %>
@@ -58,19 +58,42 @@
   </div>
 </div>
 
-<!-- Login form -->
-<div id="id04" class="modal-image">
+<!-- Image slider modal -->
+<div id="id07" class="modal-image">
   <div class="modal-content-img animate image-pop-container">
     <div class="imgcontainer-img">
-      <span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <span class="img-left"><%= image_tag "left.png", class: "image-fill-container" %></span>
-      <span class="img-right"><%= image_tag "right.png", class: "image-fill-container" %></span>
-      <span class="img-right"><%= image_tag "right.png", class: "image-fill-container" %></span>
-      <% if @owner.properties.any? &&  @owner.properties.last.cover_image.present? %>
-        <%= cl_image_tag @owner.properties.last.cover_image, class: "image-fill-container" %>
-      <% else %>
-        <%= image_tag "prop-placehold.jpg", class: "image-fill-container"%>
+      <span onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <%= cl_image_tag @owner.properties.last.cover_image, id: "hide", class: "image-fill-container" %>
+
+  <% i = 1 %>
+  <% leng = @owner.properties.last.property_images.length %>
+  <% @owner.properties.last.property_images.each do |image| %>
+
+      <div class="mySlides fade">
+        <div class="numbertext"><%= i %> / <%= leng %></div>
+        <% if i == 1 %>
+          <%= cl_image_tag @owner.properties.last.cover_image, class: "image-fill-container" %>
+        <% else %>
+          <%= cl_image_tag image.image_url, class: "image-fill-container" %>
+        <% end %>
+
+      </div>
+
+  <% i += 1%>
+  <% end %>
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+      <br>
+
+      <div style="text-align:center">
+      <% i = 1 %>
+      <% @owner.properties.last.property_images.each do |image| %>
+        <span class="dot" onclick="currentSlide(<%=i%>)"></span>
+      <% i += 1%>
       <% end %>
+      </div>
 
     </div>
   </div>
