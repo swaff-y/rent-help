@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'ratings/new'
+  get 'ratings/create'
+  get 'ratings/index'
+  get 'ratings/show'
+  get 'ratings/edit'
+  get 'ratings/update'
 root to: 'pages#home'
 
 get '/login'  => 'session#new'        # showing the login form

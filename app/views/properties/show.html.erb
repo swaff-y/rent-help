@@ -17,11 +17,19 @@
     <p>Current Owner: <span class="blue-text"><%= link_to @property.owner.name, owner_path(@property.owner.id), class: "ten-link" %></span></p>
     <p>Previous Tenents:
       <ul>
+        <% rating = 0 %>
       <% @property.tenants.each do |tenant|%>
-        <li class="blue-text"><%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %></li>
+        <li class="blue-text">
+          <%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %> |
+          <% tenant = TenantRating.find_by(user_id: tenant.id) %>
+          <%= tenant.rating %>
+          <% rating += tenant.rating.to_f %>
+        </li>
       <% end %>
+      <% rating = rating / @property.tenants.length %>
       </ul>
     </p>
+
 <script type="text/javascript">
   function initMap() {
     const myLatLng = { lat: <%=@property.latitude%> , lng: <%=@property.longitude%> };
@@ -60,6 +68,14 @@
       </div>
     </div>
   </div>
+</div>
+<div class="rating-container">
+  <span class="fa fa-star <% if rating.round >= 1 %><%= 'checked' %><%end%>"></span>
+  <span class="fa fa-star <% if rating.round >= 2 %><%= 'checked' %><%end%>"></span>
+  <span class="fa fa-star <% if rating.round >= 3 %><%= 'checked' %><%end%>"></span>
+  <span class="fa fa-star <% if rating.round >= 4 %><%='checked' %><%end%>"></span>
+  <span class="fa fa-star <% if rating.round == 5 %><%='checked'%><%end%>"></span>
+
 </div>
 
 <!-- Image slider modal -->

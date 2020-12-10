@@ -61,8 +61,8 @@ function showSlides(n) {
 
 
 function initMap() {
-  const myLatLng = { lat: lat, lng: long };
-  const map = new google.maps.Map(document.getElementById("map"), {
+  var myLatLng = { lat: lat, lng: long };
+  var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: myLatLng,
   });

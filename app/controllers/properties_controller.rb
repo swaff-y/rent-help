@@ -24,6 +24,7 @@ class PropertiesController < ApplicationController
 
   def show
     @property = Property.find params[:id]
+    @owner = Owner.find @property.owner.id
   end
 
   def edit
@@ -51,7 +52,7 @@ class PropertiesController < ApplicationController
   end
 
   def search
-    @results = Property.near(params[:search], 50, units: :km) 
+    @results = Property.near(params[:search], 50, units: :km)
   end
 
   private

@@ -4,9 +4,11 @@
 User.destroy_all
 Property.destroy_all
 PropertyImage.destroy_all
+Rating.destroy_all
 
 
 tenant_array = []
+tenant_rating_array = [];
 15.times do
   create = Tenant.create!(
     name: Faker::Name.unique.name,
@@ -16,11 +18,17 @@ tenant_array = []
     verified: Faker::Boolean.boolean
   )
   tenant_array.push create
+  create_rating = TenantRating.create!(
+    rating: rand(1..5)
+  )
+  tenant_rating_array.push create_rating
 end
 
 puts "15 tenants created"
+puts "15 tenant ratings created"
 
 owner_array = []
+owner_rating_array = []
 5.times do
   create = Owner.create!(
     name: Faker::Name.unique.name,
@@ -30,9 +38,14 @@ owner_array = []
     verified: Faker::Boolean.boolean
   )
   owner_array.push create
+  create_rating = OwnerRating.create!(
+    rating: rand(1..5)
+  )
+  owner_rating_array.push create_rating
 end
 
 puts "5 owners created"
+puts "5 owner ratings created"
 
 owner_admin = Owner.create!(
 
@@ -72,6 +85,7 @@ property_array = [];
     lease_end: Faker::Date.between(from: '2020-10-01', to: '2020-12-01'),
     cover_image: "image" + num  + ".jpeg",
   )
+
   property_array.push create
 end
 
@@ -114,3 +128,19 @@ puts "Testing property -< images associations:"
 puts "The image '#{ PropertyImage.first.name }' is by"
 puts PropertyImage.first.property.street
 puts "The property #{ Property.last.street} has the images: #{ Property.last.property_images.pluck(:name).join(', ') }"
+
+5.times do |i|
+  owner_array[i].owner_ratings <<  owner_rating_array[i]
+end
+
+puts "Testing owners -< owner rating associations:"
+puts "The rating '#{ OwnerRating.first.rating }' is by #{OwnerRating.first.owner.name}"
+puts "The owner #{ Owner.last.name } has the rating: #{ Owner.last.owner_ratings.pluck(:rating).join(', ') }"
+
+15.times do |i|
+  tenant_array[i].tenant_ratings <<  tenant_rating_array[i]
+end
+
+puts "Testing tenants -< tenant rating associations:"
+puts "The rating '#{ TenantRating.first.rating }' is by #{TenantRating.first.tenant.name}"
+puts "The tenant #{ Tenant.last.name } has the rating: #{ Tenant.last.tenant_ratings.pluck(:rating).join(', ') }"
