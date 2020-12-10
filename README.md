@@ -9,6 +9,8 @@ https://rent-help.herokuapp.com/
 ## Tech stack
 
 - Ruby on rails
+- PostgreSQL database
+- Javascript modals
 
 ## Known bugs
 
