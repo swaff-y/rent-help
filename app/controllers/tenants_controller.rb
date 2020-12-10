@@ -19,7 +19,7 @@ class TenantsController < ApplicationController
 
   def update
     tenant = Tenant.find params[:id]
-    user.update tenant_params
+    tenant.update tenant_params
 
     redirect_to root_path
   end
@@ -33,6 +33,6 @@ class TenantsController < ApplicationController
 
   private
   def tenant_params
-    params.require(:tenant).permit(:id)
+    params.require(:tenant).permit(:type, :name, :email, :phone, :password, :password_confirmation)
   end
 end
