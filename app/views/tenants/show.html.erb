@@ -61,10 +61,10 @@
 @tenant.properties.each do |property|
     property = Property.find_by(id: property.id)
     owner = OwnerRating.find_by(user_id: property.owner.id)
-   rating += owner.rating.to_f
-   if rating == 0
-     rating = 1
-   end
+  if owner.rating != nil
+    rating += owner.rating.to_f
+  end
+
 end
 if @tenant.properties.length == 0
   div = 1.to_f
@@ -121,6 +121,6 @@ rating = rating / div %>
 </div>
 
 
-<div class="spacer-indiv">
+<div class="spacer">
 
 </div>

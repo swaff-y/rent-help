@@ -22,16 +22,19 @@
         <li class="blue-text">
           <%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %>
           <% tenant = TenantRating.find_by(user_id: tenant.id) %>
-          <% tenant.rating %>
-          <span class="fa fa-star <% if tenant.rating >= 1 %><%= 'checked' %><%end%>"></span>
-          <span class="fa fa-star <% if tenant.rating >= 2 %><%= 'checked' %><%end%>"></span>
-          <span class="fa fa-star <% if tenant.rating >= 3 %><%= 'checked' %><%end%>"></span>
-          <span class="fa fa-star <% if tenant.rating >= 4 %><%='checked' %><%end%>"></span>
-          <span class="fa fa-star <% if tenant.rating == 5 %><%='checked'%><%end%>"></span>
-          <% rating += tenant.rating.to_f %>
-          <% if rating == 0 %>
-          <% rating = 1 %>
-          <% end %>
+          <%if tenant != nil
+              rate = tenant.rating
+              rating += tenant.rating.to_f
+            else
+              rate = 0
+            end%>
+
+          <span class="fa fa-star <% if rate >= 1 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if rate >= 2 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if rate >= 3 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if rate >= 4 %><%='checked' %><%end%>"></span>
+          <span class="fa fa-star <% if rate == 5 %><%='checked'%><%end%>"></span>
+
         </li>
       <% end %>
       <%  if @property.tenants.length == 0

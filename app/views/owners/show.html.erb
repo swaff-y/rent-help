@@ -8,7 +8,30 @@
     <p>Owner Properties:
       <ul>
       <% @owner.properties.each do |property|%>
-        <li class="blue-text"><%= link_to property.street, property_path(property.id), class: "ten-link"  %></li>
+        <li class="blue-text"><%= link_to property.street, property_path(property.id), class: "ten-link"  %>
+        <% rating = 0 %>
+        <%  if property.tenants.length == 0
+              div = 1
+            else
+              div = property.tenants.length
+            end %>
+        <% property.tenants.each do |tenant|%>
+        <% tenant = TenantRating.find_by(user_id: tenant.id) %>
+        <%if tenant != nil
+            rate = tenant.rating
+          else
+            rate = 0
+          end%>
+          <% rating += rate.to_f %>
+        <% end %>
+        <% rating = rating / div %>
+
+          <span class="fa fa-star <% if rating.round >= 1 %><%='checked'%><%end%>"></span>
+          <span class="fa fa-star <% if rating.round >= 2 %><%='checked'%><%end%>"></span>
+          <span class="fa fa-star <% if rating.round >= 3 %><%='checked'%><%end%>"></span>
+          <span class="fa fa-star <% if rating.round >= 4 %><%='checked'%><%end%>"></span>
+          <span class="fa fa-star <% if rating.round == 5 %><%='checked'%><%end%>"></span>
+        </li>
       <% end %>
       </ul>
     </p>
@@ -101,6 +124,6 @@
 </div>
 
 
-<div class="spacer-indiv">
+<div class="spacer">
 
 </div>
