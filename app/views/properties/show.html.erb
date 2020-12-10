@@ -20,13 +20,26 @@
         <% rating = 0 %>
       <% @property.tenants.each do |tenant|%>
         <li class="blue-text">
-          <%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %> |
+          <%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %>
           <% tenant = TenantRating.find_by(user_id: tenant.id) %>
-          <%= tenant.rating %>
+          <% tenant.rating %>
+          <span class="fa fa-star <% if tenant.rating >= 1 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if tenant.rating >= 2 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if tenant.rating >= 3 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if tenant.rating >= 4 %><%='checked' %><%end%>"></span>
+          <span class="fa fa-star <% if tenant.rating == 5 %><%='checked'%><%end%>"></span>
           <% rating += tenant.rating.to_f %>
+          <% if rating == 0 %>
+          <% rating = 1 %>
+          <% end %>
         </li>
       <% end %>
-      <% rating = rating / @property.tenants.length %>
+      <%  if @property.tenants.length == 0
+            div = 1
+          else
+            div = @property.tenants.length
+          end %>
+      <% rating = rating / div %>
       </ul>
     </p>
 
@@ -75,7 +88,6 @@
   <span class="fa fa-star <% if rating.round >= 3 %><%= 'checked' %><%end%>"></span>
   <span class="fa fa-star <% if rating.round >= 4 %><%='checked' %><%end%>"></span>
   <span class="fa fa-star <% if rating.round == 5 %><%='checked'%><%end%>"></span>
-
 </div>
 
 <!-- Image slider modal -->

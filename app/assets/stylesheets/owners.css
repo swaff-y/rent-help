@@ -13,3 +13,8 @@
   left: 50px;
   z-index: 2;
 }
+.rating-container-tenant{
+  position: relative;
+  top: -670px;
+  left: 300px;
+}
