@@ -1,3 +1,4 @@
+
 <div class="prop-show-container">
   <div class="prop-show-inner-left">
     <p class="large-text"><%= @property.unit %> <br> <%= @property.street %> <br> <%= @property.city %> <br> <%= @property.state %> <br> <%= @property.postcode %></p>
@@ -18,28 +19,31 @@
     <p>Previous Tenents:
       <ul>
         <% rating = 0 %>
-        <% pass = ''%>
+        <% path_go = ""%>
         <% user_test = 0%>
       <% @property.tenants.each do |tenant|%>
         <li class="blue-text">
-          <% if tenant.id == @current_user.id && @current_user.type == 'Tenant'%>
+          <% if @current_user != nil && tenant.id == @current_user.id && @current_user.type == 'Tenant'%>
             <% user_test += 1%>
           <% end %>
           <%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %>
-          <% tenant = TenantRating.find_by(user_id: tenant.id) %>
-          <% pass = tenant%>
-          <%if tenant != nil
-              rate = tenant.rating
-              rating += tenant.rating.to_f
+          <% tenant_rate = TenantRating.find_by(user_id: tenant.id) %>
+          <% pass = tenant_rate%>
+
+          <%if tenant_rate != nil
+              rate = tenant_rate.rating
+              rating += tenant_rate.rating.to_f
+              path_go = rate_path(tenant_rate.id)
             else
+              path_go = ratings_path
               rate = 0
             end%>
 
           <span class="fa fa-star <% if rate >= 1 %><%= 'checked' %><%end%>"></span>
           <span class="fa fa-star <% if rate >= 2 %><%= 'checked' %><%end%>"></span>
           <span class="fa fa-star <% if rate >= 3 %><%= 'checked' %><%end%>"></span>
-          <span class="fa fa-star <% if rate >= 4 %><%='checked' %><%end%>"></span>
-          <span class="fa fa-star <% if rate == 5 %><%='checked'%><%end%>"></span>
+          <span class="fa fa-star <% if rate >= 4 %><%= 'checked' %><%end%>"></span>
+          <span class="fa fa-star <% if rate == 5 %><%= 'checked' %><%end%>"></span>
 
         </li>
       <% end %>
@@ -92,26 +96,18 @@
   </div>
 </div>
 <div class="rating-container">
-  <% if pass != nil%>
-    <% path_go = rate_path(pass.id) %>
-  <% else %>
-    <% path_go = ratings_path %>
-  <% end %>
   <% 5.times do |i| %>
       <% if rating.round - 1 >= i %>
         <% class_ins = 'star checked'%>
       <% else %>
         <% class_ins = 'star' %>
       <%end%>
-      <% if user_test == 0 %>
-        <% dis_but = " disable" %>
-      <% else %>
-        <% dis_but = ""%>
-      <% end %>
 
     <%= form_with url: path_go, local: true, class: "inline-disp" do |f| %>
     <%= f.hidden_field :type, value: "TenantRating" %>
+    <% if @current_user != nil %>
     <%= f.hidden_field :user_id, value: @current_user.id %>
+    <% end %>
     <%= f.hidden_field :rating, value: i + 1 %>
     <% if user_test == 0 %>
       <%= f.submit "★", class: class_ins, disabled: true %>

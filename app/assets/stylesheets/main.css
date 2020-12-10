@@ -203,3 +203,7 @@ nav{
 .round{
   border-radius: 50%;
 }
+.social-size{
+  height:40px;
+  width:40px;
+}

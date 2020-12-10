@@ -58,13 +58,22 @@
   </div>
 </div>
 <% rating = 0
+   path_go = ''
+   user_test = 0
 @tenant.properties.each do |property|
-    property = Property.find_by(id: property.id)
-    owner = OwnerRating.find_by(user_id: property.owner.id)
-  if owner.rating != nil
-    rating += owner.rating.to_f
-  end
+  property = Property.find_by(id: property.id)
+  owner = OwnerRating.find_by(user_id: property.owner.id)
 
+    if owner != nil
+      rating += owner.rating.to_f
+      path_go = rate_path(owner.id)
+    else
+      path_go = ratings_path
+    end
+
+    if property.owner.id == @current_user.id && @current_user.type == 'Owner'
+     user_test += 1
+    end
 end
 if @tenant.properties.length == 0
   div = 1.to_f
@@ -73,11 +82,26 @@ else
 end
 rating = rating / div %>
 <div class="rating-container-tenant">
-  <span class="fa fa-star <% if rating.round >= 1 %><%= 'checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round >= 2 %><%= 'checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round >= 3 %><%= 'checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round >= 4 %><%='checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round == 5 %><%='checked'%><%end%>"></span>
+
+  <% 5.times do |i| %>
+      <% if rating.round - 1 >= i %>
+        <% class_ins = 'star checked'%>
+      <% else %>
+        <% class_ins = 'star' %>
+      <%end%>
+
+    <%= form_with url: path_go, local: true, class: "inline-disp" do |f| %>
+    <%= f.hidden_field :type, value: "OwnerRating" %>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
+    <%= f.hidden_field :rating, value: i + 1 %>
+    <% if user_test == 0 %>
+      <%= f.submit "★", class: class_ins, disabled: true %>
+    <% else %>
+      <%= f.submit "★", class: class_ins %>
+    <% end %>
+
+    <% end %>
+  <% end %>
 </div>
 
 <!-- Image slider modal -->

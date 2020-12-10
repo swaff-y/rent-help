@@ -12,7 +12,11 @@ class RatingsController < ApplicationController
     puts "============================="
     puts params[:id]
     puts "=============================="
-    redirect_to properties_path
+    if params[:type] == "TenantRating"
+      redirect_to properties_path
+    else
+      redirect_to tenants_path
+    end
   end
 
 
@@ -23,7 +27,12 @@ class RatingsController < ApplicationController
     puts "============================="
     puts params[:id]
     puts "=============================="
-    redirect_to properties_path
+
+    if params[:type] == "TenantRating"
+      redirect_to properties_path
+    else
+      redirect_to tenants_path
+    end
   end
   private
   def rating_params
