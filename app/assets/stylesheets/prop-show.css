@@ -87,5 +87,15 @@
 .rating-container{
   position: relative;
   top: -600px;
-  left: 300px;
+  left: 250px;
+}
+
+.star{
+  border:none;
+  background-color: white;
+  text-decoration: none;
+  display: inline;
+}
+.inline-disp{
+  display: inline;
 }

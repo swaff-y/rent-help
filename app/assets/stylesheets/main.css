@@ -37,6 +37,7 @@ nav{
 }
 .nav-links{
   padding: 20px 0;
+  text-decoration: none;
   color:rgb(23,96,160);
   font-weight: 600;
   border-radius: 5px;

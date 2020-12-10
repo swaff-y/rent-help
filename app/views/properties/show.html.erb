@@ -18,10 +18,16 @@
     <p>Previous Tenents:
       <ul>
         <% rating = 0 %>
+        <% pass = ''%>
+        <% user_test = 0%>
       <% @property.tenants.each do |tenant|%>
         <li class="blue-text">
+          <% if tenant.id == @current_user.id && @current_user.type == 'Tenant'%>
+            <% user_test += 1%>
+          <% end %>
           <%= link_to tenant.name, tenant_path(tenant.id), class: "ten-link"  %>
           <% tenant = TenantRating.find_by(user_id: tenant.id) %>
+          <% pass = tenant%>
           <%if tenant != nil
               rate = tenant.rating
               rating += tenant.rating.to_f
@@ -86,11 +92,35 @@
   </div>
 </div>
 <div class="rating-container">
-  <span class="fa fa-star <% if rating.round >= 1 %><%= 'checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round >= 2 %><%= 'checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round >= 3 %><%= 'checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round >= 4 %><%='checked' %><%end%>"></span>
-  <span class="fa fa-star <% if rating.round == 5 %><%='checked'%><%end%>"></span>
+  <% if pass != nil%>
+    <% path_go = rate_path(pass.id) %>
+  <% else %>
+    <% path_go = ratings_path %>
+  <% end %>
+  <% 5.times do |i| %>
+      <% if rating.round - 1 >= i %>
+        <% class_ins = 'star checked'%>
+      <% else %>
+        <% class_ins = 'star' %>
+      <%end%>
+      <% if user_test == 0 %>
+        <% dis_but = " disable" %>
+      <% else %>
+        <% dis_but = ""%>
+      <% end %>
+
+    <%= form_with url: path_go, local: true, class: "inline-disp" do |f| %>
+    <%= f.hidden_field :type, value: "TenantRating" %>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
+    <%= f.hidden_field :rating, value: i + 1 %>
+    <% if user_test == 0 %>
+      <%= f.submit "★", class: class_ins, disabled: true %>
+    <% else %>
+      <%= f.submit "★", class: class_ins %>
+    <% end %>
+
+    <% end %>
+  <% end %>
 </div>
 
 <!-- Image slider modal -->

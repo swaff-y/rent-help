@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'ratings/new'
-  get 'ratings/create'
-  get 'ratings/index'
-  get 'ratings/show'
-  get 'ratings/edit'
-  get 'ratings/update'
 root to: 'pages#home'
 
 get '/login'  => 'session#new'        # showing the login form
@@ -18,9 +12,12 @@ post '/owners/link' => 'owners#property_link'
 post '/property/image' => 'properties#image_upload'
 post '/property/search' => 'properties#search'
 
+post '/rating/:id/new' => 'ratings#update', as: "rate"
+
 resources :tenants
 resources :owners
 resources :properties
 resources :users
+resources :ratings
 
 end
