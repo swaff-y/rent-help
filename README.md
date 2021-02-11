@@ -1,24 +1,24 @@
-# README
+# Rent-help
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a property listing website that rates tenants, owners and thier properties. There is a signup option and only verified users can view the ratings and details of either the tenants or the owners. You can only rate the property that you are currently renting or, as a owner, you can only rate the tennats that have stayed in your property.
 
-Things you may want to cover:
+## Websit URL
 
-* Ruby version
+https://rent-help.herokuapp.com/
 
-* System dependencies
+## Tech stack
 
-* Configuration
+- Ruby on rails
+- PostgreSQL database
+- Javascript modals
 
-* Database creation
+## Known bugs
 
-* Database initialization
+- Rating system is faulty and is erratic in displaying ratings for both Tenants and Owners
+- Social links have not been added
+- Site map links have not been added
 
-* How to run the test suite
+## Project scope and organisation
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- https://docs.google.com/presentation/d/1d0rxq_VhiSnRucIbGc6JwpYSmsrxJzZ7JHBzvJoxFXQ/edit?usp=sharing
+- https://trello.com/b/SlWUUAgs/rent-help
